@@ -42,17 +42,16 @@ class Chat extends Component {
       });
     }, 500);
 
-    let robotMessage = answersData.find((answer) => answer.tags.includes(text));
-    if (robotMessage === undefined) {
-      robotMessage = answersData.find((answer) => answer.tags.includes('DEFAULT'));
+    const robotMessage = answersData.find((answer) => answer.tags.includes(text));
+    if (robotMessage !== undefined) {
+      setTimeout(() => {
+        const msg = this.state.messages.concat(robotMessage);
+        const messages = msg;
+        this.setState({
+          messages,
+        });
+      }, 1000);
     }
-    setTimeout(() => {
-      const msg = this.state.messages.concat(robotMessage);
-      const messages = msg;
-      this.setState({
-        messages,
-      });
-    }, 500);
   };
 
   render() {
